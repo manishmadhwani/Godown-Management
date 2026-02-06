@@ -16,17 +16,18 @@ public class User {
 
     @Column(name = "username", unique = true)
     String userName;
-    int contactNo;
-    String password;
 
     @Id
+    Long contactNo;
+    String password;
+
     @Generated
     long userId;
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
     List<Item> items;
 
-    public User(String userName, String password, int contactNo, List<Godown> godowns, List<Item> items) {
+    public User(String userName, String password, long contactNo, List<Godown> godowns, List<Item> items) {
         this.userName = userName;
         this.password = password;
         this.contactNo = contactNo;

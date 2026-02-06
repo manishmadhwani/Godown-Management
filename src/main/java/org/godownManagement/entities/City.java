@@ -13,9 +13,9 @@ import java.util.List;
 public class City {
 
     @Generated
+    @Id
     int cityId;
 
-    @Id
     String name;
 
     String state;

@@ -13,6 +13,7 @@ public class Item {
     @Id
     @Generated
     String itemId;
+
     String comodity;
     String markaName;
     int packing;

@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36" version="29.3.7">
   <diagram name="Page-1" id="gIQCuwOVj8QBAyWx39Dy">
-    <mxGraphModel dx="1708" dy="752" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="900" pageHeight="1600" math="0" shadow="0">
+    <mxGraphModel dx="1577" dy="694" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="900" pageHeight="1600" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -113,8 +113,8 @@
         <mxCell id="OyS7jH3l6MrIowhhdt3I-22" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="GodownRepository" vertex="1">
           <mxGeometry height="30" width="60" x="60" y="1405" as="geometry" />
         </mxCell>
-        <mxCell id="OyS7jH3l6MrIowhhdt3I-25" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&lt;div style=&quot;background-color: rgb(30, 31, 34); color: rgb(188, 190, 196);&quot;&gt;&lt;pre style=&quot;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:9.8pt;&quot;&gt;&lt;br&gt;    &lt;span style=&quot;color: rgb(207, 142, 109);&quot;&gt;boolean &lt;/span&gt;&lt;span style=&quot;color: rgb(86, 168, 245);&quot;&gt;addGodown&lt;/span&gt;(Godown godown, User user);&lt;br&gt;&lt;br&gt;    &lt;span style=&quot;color: rgb(207, 142, 109);&quot;&gt;boolean &lt;/span&gt;&lt;span style=&quot;color: rgb(86, 168, 245);&quot;&gt;deleteGodown&lt;/span&gt;(Godown godown, User user);&lt;br&gt;&lt;br&gt;    Godown &lt;span style=&quot;color: rgb(86, 168, 245);&quot;&gt;addEntries&lt;/span&gt;(List&amp;lt;Entry&amp;gt; entryList, Godown godown);&lt;br&gt;&lt;br&gt;    Godown &lt;span style=&quot;color: rgb(86, 168, 245);&quot;&gt;deleteEntries&lt;/span&gt;(List&amp;lt;Entry&amp;gt; entryList, Godown godown);&lt;br&gt;&lt;br&gt;    Godown &lt;span style=&quot;color: rgb(86, 168, 245);&quot;&gt;transferEntries&lt;/span&gt;(List&amp;lt;Entry&amp;gt; entryList, &lt;br/&gt;Godown godownFrom, Godown godownTo);&lt;br&gt;&lt;/pre&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="240" width="580" x="800" y="1350" as="geometry" />
+        <mxCell id="OyS7jH3l6MrIowhhdt3I-25" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&lt;div style=&quot;background-color: rgb(30, 31, 34); color: rgb(188, 190, 196);&quot;&gt;&lt;pre style=&quot;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:9.8pt;&quot;&gt;&lt;br&gt;    &lt;span style=&quot;color: rgb(207, 142, 109);&quot;&gt;boolean &lt;/span&gt;&lt;span style=&quot;color: rgb(86, 168, 245);&quot;&gt;addGodown&lt;/span&gt;(Godown godown, User user);&lt;br&gt;&lt;br&gt;    &lt;span style=&quot;color: rgb(207, 142, 109);&quot;&gt;boolean &lt;/span&gt;&lt;span style=&quot;color: rgb(86, 168, 245);&quot;&gt;deleteGodown&lt;/span&gt;(Godown godown, User user);&lt;br&gt;&lt;br&gt;&lt;/pre&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="140" width="580" x="800" y="1350" as="geometry" />
         </mxCell>
         <mxCell id="OyS7jH3l6MrIowhhdt3I-34" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="IGodownService" vertex="1">
           <mxGeometry height="30" width="60" x="820" y="1350" as="geometry" />
@@ -154,6 +154,18 @@
         </mxCell>
         <mxCell id="OyS7jH3l6MrIowhhdt3I-56" parent="1" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.4_point_star_2;dx=0.8;fillColor=#F0FF40;" value="" vertex="1">
           <mxGeometry height="100" width="100" x="880" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="iXOaj7BfrG0-HGATLUIg-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&lt;div style=&quot;background-color: rgb(30, 31, 34); color: rgb(188, 190, 196);&quot;&gt;&lt;pre style=&quot;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:9.8pt;&quot;&gt;&lt;span style=&quot;color: rgb(179, 174, 96);&quot;&gt;@Query&lt;/span&gt;(value = &lt;span style=&quot;color: rgb(106, 171, 115);&quot;&gt;&quot;SELECT *&lt;br/&gt; FROM ENTRIES entry where entry.godown.godownId = :godown.godownId&quot;&lt;/span&gt;, &lt;br/&gt;name = &lt;span style=&quot;color: rgb(106, 171, 115);&quot;&gt;&quot;GetAllEntriesInGodown&quot;&lt;/span&gt;)&lt;br&gt;List&amp;lt;Entry&amp;gt; &lt;span style=&quot;color: rgb(86, 168, 245);&quot;&gt;getAllEntriesInGodown&lt;/span&gt;(Godown godown);&lt;/pre&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="170" width="530" x="20" y="1630" as="geometry" />
+        </mxCell>
+        <mxCell id="iXOaj7BfrG0-HGATLUIg-2" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;div style=&quot;background-color:#1e1f22;color:#bcbec4&quot;&gt;&lt;pre style=&quot;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:9.8pt;&quot;&gt;EntriesRepository&lt;/pre&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="60" x="60" y="1630" as="geometry" />
+        </mxCell>
+        <mxCell id="iXOaj7BfrG0-HGATLUIg-4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&lt;div style=&quot;background-color:#1e1f22;color:#bcbec4&quot;&gt;&lt;pre style=&quot;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:9.8pt;&quot;&gt;&lt;br&gt;    Godown &lt;span style=&quot;color:#56a8f5;&quot;&gt;addEntries&lt;/span&gt;(List&amp;lt;Entry&amp;gt; entryList, Godown godown);&lt;br&gt;&lt;br&gt;    Godown &lt;span style=&quot;color:#56a8f5;&quot;&gt;deleteEntries&lt;/span&gt;(List&amp;lt;Entry&amp;gt; entryList, Godown godown);&lt;br&gt;&lt;br&gt;    Godown &lt;span style=&quot;color:#56a8f5;&quot;&gt;transferEntries&lt;/span&gt;(List&amp;lt;Entry&amp;gt; entryList, Godown godownFrom,&lt;br/&gt; Godown godownTo);&lt;br&gt;&lt;/pre&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="200" width="580" x="800" y="1520" as="geometry" />
+        </mxCell>
+        <mxCell id="iXOaj7BfrG0-HGATLUIg-5" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;div style=&quot;background-color:#1e1f22;color:#bcbec4&quot;&gt;&lt;pre style=&quot;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:9.8pt;&quot;&gt;IEntryService&lt;/pre&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="60" x="830" y="1530" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
