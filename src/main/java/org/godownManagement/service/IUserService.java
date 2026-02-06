@@ -1,13 +1,16 @@
 package org.godownManagement.service;
 
+import org.godownManagement.dto.UserLoginRequest;
 import org.godownManagement.dto.UserRegisterRequest;
 import org.godownManagement.entities.User;
+import org.godownManagement.exceptions.InCorrectPasswordException;
+import org.godownManagement.exceptions.NoSuchUserExist;
 
 public interface IUserService {
 
-    boolean registerUser(UserRegisterRequest user);
+    User registerUser(UserRegisterRequest user);
 
-    boolean validateUser(User user);
+    boolean validateUser(UserLoginRequest userLoginRequest) throws NoSuchUserExist, InCorrectPasswordException;
 
     boolean checkIfUserExist(UserRegisterRequest user);
 }

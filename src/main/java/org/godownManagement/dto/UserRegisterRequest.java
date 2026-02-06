@@ -2,6 +2,7 @@ package org.godownManagement.dto;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
 import lombok.Builder;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
@@ -21,7 +22,7 @@ public class UserRegisterRequest {
 
     @Valid
     @NotEmpty(message = "Customer number is required")
-    @Length(max = 10, min = 10, message = "Number input is wrong")
+    @Pattern(regexp = "\\d{10}", message = "Number input is wrong")
     Long contactNo;
 
     @Valid
