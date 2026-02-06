@@ -3,35 +3,28 @@ package org.godownManagement.entities;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
-import org.hibernate.annotations.Generated;
 
 import java.util.List;
 
 @Table(name = "USER")
 @Data
 @Builder
+@Entity
 public class User {
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
-    List<Godown> godowns;
-
-    @Column(name = "username", unique = true)
-    String userName;
-
     @Id
-    Long contactNo;
-    String password;
-
-    @Generated
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     long userId;
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
-    List<Item> items;
+    List<Godown> godowns;
 
-    public User(String userName, String password, long contactNo, List<Godown> godowns, List<Item> items) {
-        this.userName = userName;
-        this.password = password;
-        this.contactNo = contactNo;
-        this.godowns = godowns;
-        this.items = items;
-    }
+    @Column(name = "userName", unique = true)
+    String userName;
+
+    Long contactNo;
+
+    String password;
+
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+    List<Item> items;
 }
