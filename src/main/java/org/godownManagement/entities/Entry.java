@@ -10,7 +10,7 @@ import java.sql.Date;
 @Data
 public class Entry {
     @Id
-    @Generated
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     String entryId;
 
     int noOfPackings;

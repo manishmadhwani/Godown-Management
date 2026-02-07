@@ -16,7 +16,7 @@ public class Godown {
     User owner;
 
     @Id
-    @Generated
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int godownId;
 
     String name;
