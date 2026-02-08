@@ -1,4 +1,4 @@
-package org.godownManagement.dto;
+package org.godownManagement.requestDtos;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
