@@ -1,12 +1,13 @@
 package org.godownManagement.controller;
 
 import jakarta.validation.Valid;
-import org.godownManagement.dto.UserLoginRequest;
-import org.godownManagement.dto.UserRegisterRequest;
+import org.godownManagement.requestDtos.UserLoginRequest;
+import org.godownManagement.requestDtos.UserRegisterRequest;
 import org.godownManagement.entities.User;
 import org.godownManagement.exceptions.InCorrectPasswordException;
 import org.godownManagement.exceptions.NoSuchUserExist;
 import org.godownManagement.exceptions.UserAlreadyExistException;
+import org.godownManagement.responseDtos.UserLoginResponse;
 import org.godownManagement.service.IUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Objects;
 
 import static org.godownManagement.constants.Constants.*;
 import static org.godownManagement.constants.ExceptionConstant.USER_ALREADY_EXIST;
@@ -39,11 +42,17 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    ResponseEntity<String> userLogin(@RequestBody @Valid UserLoginRequest userLoginRequest)
+    ResponseEntity<Object> userLogin(@RequestBody @Valid UserLoginRequest userLoginRequest)
             throws NoSuchUserExist, InCorrectPasswordException {
-        if (iUserService.validateUser(userLoginRequest)) {
+        logger.info("User trying to log in : {}", userLoginRequest.getContactNo());
+        User user= iUserService.validateUser(userLoginRequest);
+        if (Objects.nonNull(user)) {
+            UserLoginResponse userLoginResponse = UserLoginResponse.builder().userName(user.getUserName())
+                    .contactNo(user.getContactNo())
+                    .build();
+            logger.info(USER_LOGGED_IN);
             logger.info("User logged in successfully : {}", userLoginRequest.getContactNo());
-            return ResponseEntity.status(HttpStatus.OK).body(USER_LOGGED_IN);
+            return ResponseEntity.status(HttpStatus.OK).body(userLoginResponse);
         }
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(UNABLE_TO_LOGIN);
     }

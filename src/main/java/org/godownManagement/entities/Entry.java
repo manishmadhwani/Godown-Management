@@ -1,17 +1,22 @@
 package org.godownManagement.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Generated;
 
 import java.sql.Date;
 
 @Table(name = "ENTRIES")
 @Data
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Entry {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    String entryId;
+    long entryId;
 
     int noOfPackings;
     int entryValuation;
