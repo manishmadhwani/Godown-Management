@@ -15,7 +15,6 @@ public class City {
     int cityId;
 
     String name;
-
     String state;
 
     @OneToMany(mappedBy = "city")

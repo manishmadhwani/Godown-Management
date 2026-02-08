@@ -1,7 +1,7 @@
 package org.godownManagement.serviceImpl;
 
-import org.godownManagement.dto.UserLoginRequest;
-import org.godownManagement.dto.UserRegisterRequest;
+import org.godownManagement.requestDtos.UserLoginRequest;
+import org.godownManagement.requestDtos.UserRegisterRequest;
 import org.godownManagement.entities.User;
 import org.godownManagement.exceptions.InCorrectPasswordException;
 import org.godownManagement.exceptions.NoSuchUserExist;
@@ -33,13 +33,13 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public boolean validateUser(UserLoginRequest userLoginRequest) throws NoSuchUserExist, InCorrectPasswordException {
+    public User validateUser(UserLoginRequest userLoginRequest) throws NoSuchUserExist, InCorrectPasswordException {
         Optional<User> user = userRespository.getUserByContactNo(userLoginRequest.getContactNo());
         if (user.isEmpty()) throw new NoSuchUserExist(NO_SUCH_USER_EXIST);
 
         if (!user.get().getPassword().equals(userLoginRequest.getPassword()))
             throw new InCorrectPasswordException(INCORRECT_PASSWORD_PROVIDED);
-        return true;
+        return user.get();
     }
 
     @Override

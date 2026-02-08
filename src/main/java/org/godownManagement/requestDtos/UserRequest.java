@@ -1,19 +1,18 @@
-package org.godownManagement.dto;
+package org.godownManagement.requestDtos;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Builder;
 import lombok.Data;
 
-@Data
 @Builder
-public class UserLoginRequest {
+@Data
+public class UserRequest {
+    @Valid
+    @NotEmpty(message = "Customer userName is required")
+    String userName;
 
     @Valid
     @NotEmpty(message = "Customer contactNo is required")
     Long contactNo;
-
-    @Valid
-    @NotEmpty(message = "Customer password is required")
-    String password;
 }
