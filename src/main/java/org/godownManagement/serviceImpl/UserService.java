@@ -1,5 +1,6 @@
 package org.godownManagement.serviceImpl;
 
+import io.swagger.v3.oas.annotations.servers.Server;
 import org.godownManagement.requestDtos.UserLoginRequest;
 import org.godownManagement.requestDtos.UserRegisterRequest;
 import org.godownManagement.entities.User;
@@ -8,6 +9,7 @@ import org.godownManagement.exceptions.NoSuchUserExist;
 import org.godownManagement.repository.UserRespository;
 import org.godownManagement.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -15,6 +17,7 @@ import java.util.Optional;
 import static org.godownManagement.constants.ExceptionConstant.INCORRECT_PASSWORD_PROVIDED;
 import static org.godownManagement.constants.ExceptionConstant.NO_SUCH_USER_EXIST;
 
+@Service
 public class UserService implements IUserService {
     @Autowired
     UserRespository userRespository;

@@ -11,12 +11,14 @@ import org.godownManagement.requestDtos.CityRequest;
 import org.godownManagement.requestDtos.UserRequest;
 import org.godownManagement.service.IGodownService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 import static org.godownManagement.constants.Constants.NULL_ENTRIES;
 import static org.godownManagement.constants.Constants.VALUATION;
 
+@Service
 public class GodownService implements IGodownService {
 
     @Autowired

@@ -1,13 +1,19 @@
 package org.godownManagement.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import org.hibernate.annotations.Generated;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Table(name = "CITIES")
 @Data
+@Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class City {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,9 +25,4 @@ public class City {
 
     @OneToMany(mappedBy = "city")
     List<Godown> godowns;
-
-    City(String name, List<Godown> godowns) {
-        this.name = name;
-        this.godowns = godowns;
-    }
 }

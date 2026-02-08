@@ -1,15 +1,20 @@
 package org.godownManagement.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Generated;
 
 @Table(name = "ITEMS")
 @Data
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    String itemId;
+    long itemId;
 
     String comodity;
     String markaName;
