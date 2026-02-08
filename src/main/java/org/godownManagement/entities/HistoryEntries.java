@@ -1,9 +1,6 @@
 package org.godownManagement.entities;
 
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import org.hibernate.annotations.Generated;
 
 import java.sql.Date;
@@ -11,7 +8,7 @@ import java.sql.Date;
 @Table(name = "History_Entries")
 public class HistoryEntries {
     @Id
-    @Generated
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int historyId;
 
     String typeOfTransaction;

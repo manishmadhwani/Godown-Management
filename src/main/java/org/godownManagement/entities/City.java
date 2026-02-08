@@ -1,8 +1,6 @@
 package org.godownManagement.entities;
 
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.Generated;
 
@@ -12,7 +10,7 @@ import java.util.List;
 @Data
 public class City {
 
-    @Generated
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     int cityId;
 

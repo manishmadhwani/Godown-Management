@@ -1,9 +1,6 @@
 package org.godownManagement.entities;
 
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.Generated;
 
@@ -11,7 +8,7 @@ import org.hibernate.annotations.Generated;
 @Data
 public class Item {
     @Id
-    @Generated
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     String itemId;
 
     String comodity;
