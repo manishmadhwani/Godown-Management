@@ -9,6 +9,7 @@ import org.godownManagement.exceptions.NoSuchUserExist;
 import org.godownManagement.exceptions.UserAlreadyExistException;
 import org.godownManagement.responseDtos.UserLoginResponse;
 import org.godownManagement.service.IUserService;
+import org.godownManagement.util.SessionManagementUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,9 @@ public class LoginController {
 
     @Autowired
     IUserService iUserService;
+
+    @Autowired
+    SessionManagementUtil sessionManagementUtil;
 
     @PostMapping("/register")
     ResponseEntity<String> userRegistration(@RequestBody @Valid UserRegisterRequest userRegisterRequest)

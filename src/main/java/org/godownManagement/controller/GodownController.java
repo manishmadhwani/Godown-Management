@@ -1,5 +1,7 @@
 package org.godownManagement.controller;
 
+import org.godownManagement.exceptions.CityNotLoaded;
+import org.godownManagement.exceptions.NoSuchUserExist;
 import org.godownManagement.requestDtos.AddGodownRequest;
 import org.godownManagement.service.IGodownService;
 import org.slf4j.Logger;
@@ -23,10 +25,14 @@ public class GodownController {
     IGodownService iGodownService;
 
     @PostMapping("/addGodown")
-    public ResponseEntity<String> addGodown(@RequestBody AddGodownRequest addGodownRequest) {
-        logger.info("[addGodown] Request to add a godown from user :{}", addGodownRequest.getUserRequest().getContactNo());
+    public ResponseEntity<String> addGodown(@RequestBody AddGodownRequest addGodownRequest)
+            throws CityNotLoaded, NoSuchUserExist {
+        logger.info("[addGodown] Request to add a godown from user :{}",
+                addGodownRequest.getUserRequest().getContactNo());
+
         if (iGodownService.addGodown(addGodownRequest))
             return ResponseEntity.status(HttpStatus.CREATED).body(GODOWN_ADDED_SUCCESSFULLY);
+
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(FAILED_TO_ADD_GODOWN);
     }
 }

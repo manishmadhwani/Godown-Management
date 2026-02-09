@@ -47,6 +47,9 @@ public class UserService implements IUserService {
 
     @Override
     public boolean checkIfUserExist(UserRegisterRequest user) {
-        return !Objects.isNull(userRespository.getUserByContactNo(user.getContactNo()));
+        Optional<User> optionalUser= userRespository.getUserByContactNo(user.getContactNo());
+        if (optionalUser.isPresent()) return true;
+
+        return false;
     }
 }

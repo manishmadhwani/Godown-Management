@@ -1,5 +1,6 @@
 package org.godownManagement.controller;
 
+import org.godownManagement.exceptions.CityNotLoaded;
 import org.godownManagement.exceptions.InCorrectPasswordException;
 import org.godownManagement.exceptions.NoSuchUserExist;
 import org.godownManagement.exceptions.UserAlreadyExistException;
@@ -39,6 +40,13 @@ public class ExceptionHandler {
 
         logger.error("[noSuchUserExist] Throwing exception for : {}", noSuchUserExist.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(noSuchUserExist.getMessage());
+    }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(CityNotLoaded.class)
+    public ResponseEntity<String> cityNotLoadedInDatabase(CityNotLoaded cityNotLoaded) {
+
+        logger.error("[cityNotLoadedInDatabase] Throwing exception for : {}", cityNotLoaded.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(cityNotLoaded.getMessage());
     }
 
     @org.springframework.web.bind.annotation.ExceptionHandler(InCorrectPasswordException.class)

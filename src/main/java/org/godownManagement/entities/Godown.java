@@ -17,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Godown {
     @ManyToOne
-    @JoinColumn(name = "owner_id")
+    @JoinColumn(name = "ownerId")
     User owner;
 
     @Id
@@ -29,7 +29,7 @@ public class Godown {
     int valuation;
 
     @ManyToOne
-    @JoinColumn(name = "cityName")
+    @JoinColumn(name = "cityId")
     City city;
 
     @OneToMany(mappedBy = "godown")
