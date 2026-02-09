@@ -2,6 +2,7 @@ package org.godownManagement.requestDtos;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
 
@@ -10,7 +11,7 @@ import lombok.Data;
 public class UserLoginRequest {
 
     @Valid
-    @NotEmpty(message = "Customer contactNo is required")
+    @NotNull(message = "Customer contactNo is required")
     Long contactNo;
 
     @Valid
