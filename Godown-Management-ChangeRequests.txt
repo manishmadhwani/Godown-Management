@@ -62,9 +62,16 @@ Godown_Management_AddGodown_4
 - Apply proper validations on the dto (addGodownRequestDto), 
 owner should not be null, name, address, city details these should not be null.
 
-Godown_Management_DeleteGodown_5
 
-Godown_Management_GetAllGodownPerUser_6
+Godown_Management_GetAllGodownPerUser_5
 Once a user logs in, user should be able to see all the godowns he owns
-Godown should be displayed in a sorted order in their valuation
+Godown should be displayed in a sorted order in their names
+Ui will send userLoginResponse {
+	"userName": "", 
+	"contactNo": ""
+}, load the user from the database, and then load all godowns, which this user owns.
 return a list of Godowns to ui as the data
+Ui should load all the godowns at home page itself, when user logs in.
+
+
+Godown_Management_DeleteGodown_6

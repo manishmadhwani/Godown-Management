@@ -15,6 +15,8 @@ import org.godownManagement.service.IGodownService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -60,5 +62,17 @@ public class GodownService implements IGodownService {
     @Override
     public boolean deleteGodown(Godown godown, User user) {
         return false;
+    }
+
+    @Override
+    public List<Godown> getAllGodownsPerUser(UserRequest userRequest) throws NoSuchUserExist {
+        Optional<User> user = userRespository.getUserByContactNo(userRequest.getContactNo());
+        if (user.isEmpty()) throw new NoSuchUserExist(NO_SUCH_USER_EXIST);
+
+        List<Godown> godowns = godownRepository.getAllGodownsPerUser(userRequest.getContactNo());
+        Collections.sort(godowns, (godown1, godown2) -> {
+            return godown1.getName().compareTo(godown2.getName());
+        });
+        return godowns;
     }
 }
