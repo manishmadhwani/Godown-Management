@@ -17,6 +17,7 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "userId")
     long userId;
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
@@ -25,8 +26,10 @@ public class User {
     @Column(name = "userName", unique = true)
     String userName;
 
-    Long contactNo;
+    @Column(name = "contactNo")
+    String contactNo;
 
+    @Column(name = "password")
     String password;
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)

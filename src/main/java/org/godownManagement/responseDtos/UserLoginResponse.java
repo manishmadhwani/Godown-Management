@@ -8,5 +8,5 @@ import lombok.Data;
 public class UserLoginResponse {
 
     String userName;
-    Long contactNo;
+    String contactNo;
 }

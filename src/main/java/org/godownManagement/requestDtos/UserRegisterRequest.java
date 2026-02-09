@@ -24,7 +24,7 @@ public class UserRegisterRequest {
     @Valid
     @NotNull(message = "Customer number is required")
     @Pattern(regexp = "\\d{10}", message = "Number input is wrong")
-    Long contactNo;
+    String contactNo;
 
     @Valid
     @NotEmpty(message = "Address is required")

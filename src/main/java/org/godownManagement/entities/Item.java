@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Generated;
 
 @Table(name = "ITEMS")
 @Data
@@ -14,21 +13,22 @@ import org.hibernate.annotations.Generated;
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "itemId")
     long itemId;
 
+    @Column(name = "comodity")
     String comodity;
+
+    @Column(name = "markaName")
     String markaName;
+
+    @Column(name = "packing")
     int packing;
+
+    @Column(name = "addressFrom")
     String addressFrom;
 
     @ManyToOne
     @JoinColumn(name = "owner_Id")
     User owner;
-
-    public Item(String comodity, String markaName, int packing, String addressFrom) {
-        this.comodity = comodity;
-        this.markaName = markaName;
-        this.packing = packing;
-        this.addressFrom = addressFrom;
-    }
 }
