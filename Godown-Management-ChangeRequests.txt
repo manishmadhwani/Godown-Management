@@ -63,6 +63,22 @@ Godown_Management_AddGodown_4
 owner should not be null, name, address, city details these should not be null.
 
 
+API :-@PostMapping("/getAllGodowns")
+Sample request: -
+{
+    "userName": "",
+    "contactNo": ""
+}
+Response :- {
+{
+    User owner;
+    int godownId;
+    String name;
+    String address;
+    int valuation;
+    City city;
+    List<Entry> entries;
+}
 Godown_Management_GetAllGodownPerUser_5
 Once a user logs in, user should be able to see all the godowns he owns
 Godown should be displayed in a sorted order in their names
