@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface GodownRepository extends JpaRepository<Godown, Integer> {
 
-    @Query(value = "SELECT g FROM GODOWNS g where g.owner.contactNo = :contactNo")
+    @Query(value = "SELECT g FROM Godown g where g.owner.contactNo = :contactNo")
     List<Godown> getAllGodownsPerUser(@Param("contactNo") String contactNo);
 }

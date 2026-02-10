@@ -41,7 +41,7 @@ public class GodownController {
 
     @PostMapping("/getAllGodowns")
     public ResponseEntity<List<Godown>> getAllGodowns(@RequestBody UserRequest userRequest) throws NoSuchUserExist {
-        logger.info("[getAllGodowns] Request to add get all godowns for user :{}", userRequest.getContactNo());
+        logger.info("[getAllGodowns] Request to get all godowns for user :{}", userRequest.getContactNo());
         List<Godown> godownList = iGodownService.getAllGodownsPerUser(userRequest);
         if (Objects.isNull(godownList)) return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 
