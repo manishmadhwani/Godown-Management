@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Generated;
 
 import java.sql.Date;
 
@@ -29,12 +28,4 @@ public class Entry {
     @OneToOne
     @JoinColumn(name = "itemId")
     Item item;
-
-    public Entry(int noOfPackings, int entryValuation, Date entryDate, Godown godown, Item item) {
-        this.noOfPackings = noOfPackings;
-        this.entryDate = entryDate;
-        this.entryValuation = entryValuation;
-        this.godown = godown;
-        this.item = item;
-    }
 }

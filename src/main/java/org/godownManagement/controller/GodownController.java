@@ -1,10 +1,11 @@
 package org.godownManagement.controller;
 
-import org.godownManagement.entities.Godown;
+import jakarta.validation.Valid;
 import org.godownManagement.exceptions.CityNotLoaded;
 import org.godownManagement.exceptions.NoSuchUserExist;
 import org.godownManagement.requestDtos.AddGodownRequest;
 import org.godownManagement.requestDtos.UserRequest;
+import org.godownManagement.responseDtos.GodownResponse;
 import org.godownManagement.service.IGodownService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,7 +31,7 @@ public class GodownController {
     IGodownService iGodownService;
 
     @PostMapping("/addGodown")
-    public ResponseEntity<String> addGodown(@RequestBody AddGodownRequest addGodownRequest) throws CityNotLoaded, NoSuchUserExist {
+    public ResponseEntity<String> addGodown(@RequestBody @Valid AddGodownRequest addGodownRequest) throws CityNotLoaded, NoSuchUserExist {
         logger.info("[addGodown] Request to add a godown from user :{}", addGodownRequest.getUserRequest().getContactNo());
 
         if (iGodownService.addGodown(addGodownRequest))
@@ -40,11 +41,12 @@ public class GodownController {
     }
 
     @PostMapping("/getAllGodowns")
-    public ResponseEntity<List<Godown>> getAllGodowns(@RequestBody UserRequest userRequest) throws NoSuchUserExist {
+    public ResponseEntity<List<GodownResponse>> getAllGodowns(@RequestBody @Valid UserRequest userRequest) throws NoSuchUserExist {
         logger.info("[getAllGodowns] Request to get all godowns for user :{}", userRequest.getContactNo());
-        List<Godown> godownList = iGodownService.getAllGodownsPerUser(userRequest);
-        if (Objects.isNull(godownList)) return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        List<GodownResponse> godownResponses = iGodownService.getAllGodownsPerUser(userRequest);
+        if (Objects.isNull(godownResponses) || godownResponses.size() == 0)
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 
-        return ResponseEntity.status(HttpStatus.OK).body(godownList);
+        return ResponseEntity.status(HttpStatus.OK).body(godownResponses);
     }
 }

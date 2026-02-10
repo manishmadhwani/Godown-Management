@@ -6,6 +6,7 @@ import org.godownManagement.exceptions.CityNotLoaded;
 import org.godownManagement.exceptions.NoSuchUserExist;
 import org.godownManagement.requestDtos.AddGodownRequest;
 import org.godownManagement.requestDtos.UserRequest;
+import org.godownManagement.responseDtos.GodownResponse;
 
 import java.util.List;
 
@@ -15,5 +16,5 @@ public interface IGodownService {
 
     boolean deleteGodown(Godown godown, User user);
 
-    List<Godown> getAllGodownsPerUser(UserRequest userRequest) throws NoSuchUserExist;
+    List<GodownResponse> getAllGodownsPerUser(UserRequest userRequest) throws NoSuchUserExist;
 }

@@ -1,8 +1,6 @@
 package org.godownManagement.serviceImpl;
 
-import org.godownManagement.entities.City;
-import org.godownManagement.entities.Godown;
-import org.godownManagement.entities.User;
+import org.godownManagement.entities.*;
 import org.godownManagement.exceptions.CityNotLoaded;
 import org.godownManagement.exceptions.NoSuchUserExist;
 import org.godownManagement.repository.CityRepository;
@@ -11,14 +9,14 @@ import org.godownManagement.repository.UserRespository;
 import org.godownManagement.requestDtos.AddGodownRequest;
 import org.godownManagement.requestDtos.CityRequest;
 import org.godownManagement.requestDtos.UserRequest;
+import org.godownManagement.responseDtos.EntryResponse;
+import org.godownManagement.responseDtos.GodownResponse;
+import org.godownManagement.responseDtos.ItemResponse;
 import org.godownManagement.service.IGodownService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 import static org.godownManagement.constants.Constants.NULL_ENTRIES;
 import static org.godownManagement.constants.Constants.VALUATION;
@@ -65,7 +63,7 @@ public class GodownService implements IGodownService {
     }
 
     @Override
-    public List<Godown> getAllGodownsPerUser(UserRequest userRequest) throws NoSuchUserExist {
+    public List<GodownResponse> getAllGodownsPerUser(UserRequest userRequest) throws NoSuchUserExist {
         Optional<User> user = userRespository.getUserByContactNo(userRequest.getContactNo());
         if (user.isEmpty()) throw new NoSuchUserExist(NO_SUCH_USER_EXIST);
 
@@ -73,6 +71,24 @@ public class GodownService implements IGodownService {
         Collections.sort(godowns, (godown1, godown2) -> {
             return godown1.getName().compareTo(godown2.getName());
         });
-        return godowns;
+
+        return getGodownResponseFromGodown(godowns);
+    }
+
+    private List<GodownResponse> getGodownResponseFromGodown (List<Godown> godowns) {
+        List<GodownResponse> godownResponses= new ArrayList<>();
+        for (Godown godown: godowns) {
+            List<EntryResponse> entryResponses = new ArrayList<>();
+            for (Entry entry : godown.getEntries()) {
+                Item item = entry.getItem();
+                ItemResponse itemResponse = ItemResponse.builder().comodity(item.getComodity()).markaName(item.getMarkaName()).packing(item.getPacking()).addressFrom(item.getAddressFrom()).build();
+                EntryResponse entryResponse = EntryResponse.builder().noOfPackings(entry.getNoOfPackings()).entryDate(entry.getEntryDate()).entryValuation(entry.getEntryValuation()).itemResponse(itemResponse).build();
+                entryResponses.add(entryResponse);
+            }
+            GodownResponse godownResponse = GodownResponse.builder().godownName(godown.getName()).godownAddress(godown.getAddress()).valuation(godown.getValuation()).build();
+            godownResponses.add(godownResponse);
+        }
+
+        return godownResponses;
     }
 }
