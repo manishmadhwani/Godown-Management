@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -45,7 +46,7 @@ public class GodownController {
         logger.info("[getAllGodowns] Request to get all godowns for user :{}", userRequest.getContactNo());
         List<GodownResponse> godownResponses = iGodownService.getAllGodownsPerUser(userRequest);
         if (Objects.isNull(godownResponses) || godownResponses.size() == 0)
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ArrayList<>());
 
         return ResponseEntity.status(HttpStatus.OK).body(godownResponses);
     }
