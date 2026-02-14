@@ -70,15 +70,26 @@ Sample request: -
     "contactNo": ""
 }
 Response :- {
-{
-    User owner;
-    int godownId;
-    String name;
-    String address;
-    int valuation;
-    City city;
-    List<Entry> entries;
-}
+[
+  {
+    "godownName": "string",
+    "godownAddress": "string",
+    "valuation": 0,
+    "entryResponses": [
+      {
+        "noOfPackings": 0,
+        "entryValuation": 0,
+        "entryDate": "2026-02-12T12:16:32.280Z",
+        "itemResponse": {
+          "comodity": "string",
+          "markaName": "string",
+          "packing": 0,
+          "addressFrom": "string"
+        }
+      }
+    ]
+  }
+]
 Godown_Management_GetAllGodownPerUser_5
 Once a user logs in, user should be able to see all the godowns he owns
 Godown should be displayed in a sorted order in their names
@@ -89,5 +100,33 @@ Ui will send userLoginResponse {
 return a list of Godowns to ui as the data
 Ui should load all the godowns at home page itself, when user logs in.
 
-
-Godown_Management_DeleteGodown_6
+API:- @PostMapping("/addItems")
+Sample request :- {
+    "userRequest": {
+        "contactNo": "",
+        "userName": ""
+    }
+    "comodity": ""
+    "marka": ""
+    "packing": ""
+    "addressFrom": ""
+}
+Response:- {
+    [
+        {
+            "comodity": ""
+            "markaName": ""
+            "packing": ""
+            "addressFrom": ""
+        }, {
+            "comodity": ""
+            "markaName": ""
+            "packing": ""
+            "addressFrom": ""
+        }
+    ]
+}
+Godown_Management_AddItems_ByUser
+Once user logs in, he/she would be able to add items in the system.
+Items contains comodities, marka, packing, addressFrom, and the owner of the item.
+We can give a List<Items> to add in the ui.
