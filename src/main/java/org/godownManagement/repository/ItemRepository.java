@@ -12,6 +12,6 @@ import java.util.List;
 public interface ItemRepository extends JpaRepository<Item, Integer> {
 
     @Query(name = "GetAllItemsPerUser",
-            value = "SELECT items FROM ITEMS items where items.owner.userName = :userName")
+            value = "SELECT items FROM Item items where items.owner.userName = :userName")
     List<Item> getAllItemsPerUser(@Param("userName") String userName);
 }

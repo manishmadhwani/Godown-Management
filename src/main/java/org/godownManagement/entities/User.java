@@ -15,6 +15,9 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
+    @Column(name = "userName", unique = true)
+    String userName;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "userId")
@@ -22,9 +25,6 @@ public class User {
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
     List<Godown> godowns;
-
-    @Column(name = "userName", unique = true)
-    String userName;
 
     @Column(name = "contactNo")
     String contactNo;

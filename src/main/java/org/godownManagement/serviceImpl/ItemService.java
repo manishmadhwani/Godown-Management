@@ -48,7 +48,8 @@ public class ItemService implements ItemServiceInt {
                     .addressFrom(addItemRequest.getAddressFrom()).owner(user.get())
                     .build();
             Item item_Saved_In_Database= itemRepository.save(item);
-            logger.info("[createItems] Created an entry in database of item with item Id :{}", item_Saved_In_Database.getItemId());
+            logger.info("[createItems] Created an entry in database of item with item Id :{}",
+                    item_Saved_In_Database.getItemId());
             ItemResponse itemResponse= ItemResponse.builder()
                     .comodity(item_Saved_In_Database.getComodity())
                     .markaName(item_Saved_In_Database.getMarkaName())

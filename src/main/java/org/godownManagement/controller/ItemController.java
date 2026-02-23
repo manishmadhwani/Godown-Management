@@ -20,7 +20,8 @@ public class ItemController {
     ItemServiceInt itemServiceInt;
 
     @PostMapping("/addItems")
-    ResponseEntity<List<ItemResponse>> addItems(@RequestBody List<AddItemRequest> itemRequests) throws NoSuchUserExist {
+    ResponseEntity<List<ItemResponse>> addItems(@RequestBody List<AddItemRequest> itemRequests)
+            throws NoSuchUserExist {
         List<ItemResponse> itemResponses = itemServiceInt.addItems(itemRequests);
         return ResponseEntity.status(HttpStatus.CREATED).body(itemResponses);
     }

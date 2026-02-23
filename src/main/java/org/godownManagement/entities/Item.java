@@ -13,6 +13,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class Item {
+    @ManyToOne
+    @JoinColumn(name = "owner_Id")
+    User owner;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "itemId")
@@ -29,8 +33,4 @@ public class Item {
 
     @Column(name = "addressFrom")
     String addressFrom;
-
-    @ManyToOne
-    @JoinColumn(name = "owner_Id")
-    User owner;
 }
