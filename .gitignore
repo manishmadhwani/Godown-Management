@@ -1,5 +1,11 @@
 target/
 !.mvn/wrapper/maven-wrapper.jar
+
+# Backend run scripts (do not commit)
+mvnw.cmd
+mvnw
+run-backend.cmd
+restart-backend.cmd
 !**/src/main/**/target/
 !**/src/test/**/target/
 
