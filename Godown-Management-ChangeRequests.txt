@@ -1,7 +1,7 @@
 Base URI :- api/godownManagement
 
 Change Request :- 
-
+========================================================================================================================
 API :- @PostMapping("/register")
 Sample request :-
 {
@@ -19,6 +19,7 @@ Once user registers with you send a properMessage, "User sucessfully registered 
 Catch exceptions globally, and send proper error messages to the user.
 
 
+========================================================================================================================
 API :- @PostMapping("/login")
 Sample Request :- 
 {
@@ -33,6 +34,7 @@ If user does not exist, throw a proper error, saying "User is not registered".
 If password doesn't match throw a proper error, saying "Password provided is in-correct"
 If no thing fails, return proper ResponseEntity and status code, saying "User has successfully logged in".
 
+========================================================================================================================
 API :- @GetMapping("/fetchAllCities")
 Godown_Management_GetCityAndStateDetails_3
 UI should fetch all details of cities and the state from the backend, from the database
@@ -62,7 +64,7 @@ Godown_Management_AddGodown_4
 - Apply proper validations on the dto (addGodownRequestDto), 
 owner should not be null, name, address, city details these should not be null.
 
-
+========================================================================================================================
 API :-@PostMapping("/getAllGodowns")
 Sample request: -
 {
@@ -70,15 +72,26 @@ Sample request: -
     "contactNo": ""
 }
 Response :- {
-{
-    User owner;
-    int godownId;
-    String name;
-    String address;
-    int valuation;
-    City city;
-    List<Entry> entries;
-}
+[
+  {
+    "godownName": "string",
+    "godownAddress": "string",
+    "valuation": 0,
+    "entryResponses": [
+      {
+        "noOfPackings": 0,
+        "entryValuation": 0,
+        "entryDate": "2026-02-12T12:16:32.280Z",
+        "itemResponse": {
+          "comodity": "string",
+          "markaName": "string",
+          "packing": 0,
+          "addressFrom": "string"
+        }
+      }
+    ]
+  }
+]
 Godown_Management_GetAllGodownPerUser_5
 Once a user logs in, user should be able to see all the godowns he owns
 Godown should be displayed in a sorted order in their names
@@ -89,5 +102,45 @@ Ui will send userLoginResponse {
 return a list of Godowns to ui as the data
 Ui should load all the godowns at home page itself, when user logs in.
 
+========================================================================================================================
+API:- @PostMapping("/addItems")
+Sample request :- {
+    "userRequest": {
+        "contactNo": "",
+        "userName": ""
+    }
+    "comodity": ""
+    "marka": ""
+    "packing": ""
+    "addressFrom": ""
+}
+Response:- {
+    [
+        {
+            "comodity": ""
+            "markaName": ""
+            "packing": ""
+            "addressFrom": ""
+        }, {
+            "comodity": ""
+            "markaName": ""
+            "packing": ""
+            "addressFrom": ""
+        }
+    ]
+}
+Godown_Management_AddItems_ByUser
+Once user logs in, he/she would be able to add items in the system.
+Items contains comodities, marka, packing, addressFrom, and the owner of the item.
+We can give a List<Items> to add in the ui.
 
-Godown_Management_DeleteGodown_6
+========================================================================================================================
+// To do: add description and changes needed, and impact points
+Godown_Management_Add_Delete_Items_FromGodown
+
+
+========================================================================================================================
+Godown_Management_TransferItem_fromToGodown
+
+
+========================================================================================================================

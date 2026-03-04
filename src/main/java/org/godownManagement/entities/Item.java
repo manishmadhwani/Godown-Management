@@ -2,6 +2,7 @@ package org.godownManagement.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,7 +11,12 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Item {
+    @ManyToOne
+    @JoinColumn(name = "owner_Id")
+    User owner;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "itemId")
@@ -27,8 +33,4 @@ public class Item {
 
     @Column(name = "addressFrom")
     String addressFrom;
-
-    @ManyToOne
-    @JoinColumn(name = "owner_Id")
-    User owner;
 }
