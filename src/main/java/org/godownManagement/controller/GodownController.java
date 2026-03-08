@@ -3,6 +3,7 @@ package org.godownManagement.controller;
 import jakarta.validation.Valid;
 import org.godownManagement.exceptions.CityNotLoaded;
 import org.godownManagement.exceptions.NoSuchUserExist;
+import org.godownManagement.requestDtos.AddEntryRequestToGodown;
 import org.godownManagement.requestDtos.AddGodownRequest;
 import org.godownManagement.requestDtos.UserRequest;
 import org.godownManagement.responseDtos.GodownResponse;
@@ -12,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,10 +36,8 @@ public class GodownController {
     @PostMapping("/addGodown")
     public ResponseEntity<String> addGodown(@RequestBody @Valid AddGodownRequest addGodownRequest) throws CityNotLoaded, NoSuchUserExist {
         logger.info("[addGodown] Request to add a godown from user :{}", addGodownRequest.getUserRequest().getContactNo());
-
         if (iGodownService.addGodown(addGodownRequest))
             return ResponseEntity.status(HttpStatus.CREATED).body(GODOWN_ADDED_SUCCESSFULLY);
-
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(FAILED_TO_ADD_GODOWN);
     }
 
@@ -47,7 +47,13 @@ public class GodownController {
         List<GodownResponse> godownResponses = iGodownService.getAllGodownsPerUser(userRequest);
         if (Objects.isNull(godownResponses) || godownResponses.size() == 0)
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ArrayList<>());
+        return ResponseEntity.status(HttpStatus.OK).body(godownResponses);
+    }
 
+    @PostMapping("/addEntriesToGodown/{godownId}")
+    public ResponseEntity<GodownResponse> addEntriesToGodown(@PathVariable @Valid int godownId, @RequestBody @Valid List<AddEntryRequestToGodown> addEntryRequestToGodowns) throws NoSuchUserExist {
+        logger.info("[getAllGodowns] Request to add all entries to the godown :{}", godownId);
+        GodownResponse godownResponses = iGodownService.addEntriesToGodown(godownId, addEntryRequestToGodowns);
         return ResponseEntity.status(HttpStatus.OK).body(godownResponses);
     }
 }

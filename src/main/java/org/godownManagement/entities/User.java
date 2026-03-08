@@ -1,15 +1,13 @@
 package org.godownManagement.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
 @Table(name = "USERS")
-@Data
+@Getter
+@Setter
 @Builder
 @Entity
 @NoArgsConstructor
@@ -31,7 +29,4 @@ public class User {
 
     @Column(name = "password")
     String password;
-
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
-    List<Item> items;
 }

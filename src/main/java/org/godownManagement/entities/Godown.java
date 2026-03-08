@@ -1,21 +1,22 @@
 package org.godownManagement.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.Generated;
 
 import java.util.List;
 
 @Table(name = "GODOWNS")
-@Data
+@Getter
+@Setter
 @Builder
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 public class Godown {
+    @OneToMany(mappedBy = "godown")
+    List<Entry> entries;
+
     @ManyToOne
     @JoinColumn(name = "ownerId")
     User owner;
@@ -31,7 +32,4 @@ public class Godown {
     @ManyToOne
     @JoinColumn(name = "cityId")
     City city;
-
-    @OneToMany(mappedBy = "godown")
-    List<Entry> entries;
 }

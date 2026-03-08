@@ -29,7 +29,6 @@ public class UserService implements IUserService {
                 .contactNo(userRegisterRequest.getContactNo())
                 .password(userRegisterRequest.getPassword())
                 .godowns(null)
-                .items(null)
                 .build();
         userRespository.save(user);
         return user;

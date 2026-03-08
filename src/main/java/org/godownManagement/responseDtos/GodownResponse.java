@@ -12,6 +12,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GodownResponse {
+    int godownId;
+
     String godownName;
     String godownAddress;
     int valuation;
