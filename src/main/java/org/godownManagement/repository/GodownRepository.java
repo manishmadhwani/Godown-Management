@@ -1,5 +1,6 @@
 package org.godownManagement.repository;
 
+import org.godownManagement.entities.Entry;
 import org.godownManagement.entities.Godown;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -13,4 +14,7 @@ public interface GodownRepository extends JpaRepository<Godown, Integer> {
 
     @Query(value = "SELECT g FROM Godown g where g.owner.contactNo = :contactNo")
     List<Godown> getAllGodownsPerUser(@Param("contactNo") String contactNo);
+
+    @Query(value = "SELECT g FROM Godown g where g.godownId = :godownId")
+    Godown getGodownById (@Param("godownId") int godownId);
 }

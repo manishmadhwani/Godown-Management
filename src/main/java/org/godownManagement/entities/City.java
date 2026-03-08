@@ -1,15 +1,13 @@
 package org.godownManagement.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
 @Table(name = "CITIES")
-@Data
+@Getter
+@Setter
 @Entity
 @Builder
 @NoArgsConstructor

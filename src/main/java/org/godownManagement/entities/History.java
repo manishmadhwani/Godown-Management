@@ -7,11 +7,11 @@ import org.hibernate.annotations.Generated;
 
 import java.sql.Date;
 
-@Table(name = "History_Entries")
+@Table(name = "History")
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class HistoryEntries {
+public class History {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int historyId;
