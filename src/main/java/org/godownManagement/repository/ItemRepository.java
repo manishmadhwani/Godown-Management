@@ -6,12 +6,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
 public interface ItemRepository extends JpaRepository<Item, Integer> {
 
-    @Query(name = "GetAllItemsPerUser",
-            value = "SELECT items FROM Item items where items.owner.userName = :userName")
-    List<Item> getAllItemsPerUser(@Param("userName") String userName);
+    @Query(value = "SELECT item FROM Item item where item.comodity = :comodity and item.type= :type and item.markaName= :marka and item.packing= :packing")
+    Item getItemByMarkaAndComodityAndPacking(@Param("comodity") String comodity, @Param("type") String type, @Param("marka") String marka, @Param("packing") int packing);
 }

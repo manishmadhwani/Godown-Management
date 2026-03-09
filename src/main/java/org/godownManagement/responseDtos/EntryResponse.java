@@ -12,8 +12,10 @@ import java.sql.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EntryResponse {
-    int noOfPackings;
+    int noOfSacks;
     int entryValuation;
     Date entryDate;
     ItemResponse itemResponse;
+
+    int costPerSack;
 }

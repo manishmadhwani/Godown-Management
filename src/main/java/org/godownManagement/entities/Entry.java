@@ -1,31 +1,32 @@
 package org.godownManagement.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.sql.Date;
 
 @Table(name = "ENTRIES")
-@Data
+@Getter
+@Setter
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Entry {
+    @ManyToOne
+    @JoinColumn(name = "itemId")
+    Item item;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long entryId;
 
-    int noOfPackings;
+    int noOfSacks;
+    int costPerSack;
     int entryValuation;
     Date entryDate;
 
     @ManyToOne
     @JoinColumn(name = "godownId")
     Godown godown;
-
-    @OneToOne
-    @JoinColumn(name = "itemId")
-    Item item;
 }
